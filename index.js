@@ -31,16 +31,16 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
 // event handler
 const handleEvent = async (event) => {
   switch (event.message.text) {
-    case "0":
+    case "คิดถึง":
       return client.replyMessage(event.replyToken, {
         type: "text",
         text: `คิดถึงแฟนมากกกก`,
       });
       break;
-    case "1":
+    case "รักแฟน":
       return client.replyMessage(event.replyToken, {
         type: "text",
-        text: `รักแฟนนะคร้าบ`,
+        text: `รักแฟนเหมือนกันนะคร้าบ`,
       });
       break;
     default:
