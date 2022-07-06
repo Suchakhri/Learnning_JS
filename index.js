@@ -20,9 +20,17 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
   try {
     const events = req.body.events;
     console.log("events ====>", events);
-    return res.status(200).send("OK");
+    return events.length > 0
+      ? events.map((item) => handleEvent(item))
+      : res.status(200).send("OK");
   } catch (err) {
     res.status(500).end();
   }
 });
+
+// event handler
+const handleEvent = async (event) => {
+  console.log(event);
+  return client.replyMessage(event.replyToken, { type: "text", text: "Test" });
+};
 app.listen(port);
