@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const line = require("@line/bot-sdk");
+const e = require("express");
 const env = require("dotenv").config().parsed;
 const app = express();
 const port = process.env.PORT || 4000;
@@ -12,9 +13,9 @@ const lineConfig = {
 
 // create LINE SDK client
 const client = new line.Client(lineConfig);
-app.get("/", (req, res) => {
-  res.json(`Serer is running on PORT : ${port}.`);
-});
+// app.get("/", (req, res) => {
+//   res.json(`Serer is running on PORT : ${port}.`);
+// });
 // verify
 app.post("/webhook", line.middleware(lineConfig), (req, res) => {
   try {
@@ -30,9 +31,14 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
 
 // event handler
 const handleEvent = async (event) => {
-  return client.replyMessage(event.replyToken, {
-    type: "text",
-    text: "รักแฟนมากเลยค้าบ",
-  });
+  if (event.type !== "message" || event.message.type !== "") {
+    return null;
+  } else if (event.type === "message") {
+    console.log(event);
+    return client.replyMessage(event.replyToken, {
+      type: "text",
+      text: event.message.text,
+    });
+  }
 };
 app.listen(port);
