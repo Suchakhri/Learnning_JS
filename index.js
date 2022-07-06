@@ -33,7 +33,7 @@ const handleEvent = async (event) => {
   console.log(event);
   return client.replyMessage(event.replyToken, {
     type: "text",
-    text: "Hello Vercel",
+    text: `${event}`,
   });
 };
 app.listen(port);
