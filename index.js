@@ -10,8 +10,8 @@ const lineConfig = {
   channelSecret: env.CHANNEL_SECRET,
 };
 
-// create LINE SDK client
-const client = new line.Client(lineConfig);
+// // create LINE SDK client
+// const client = new line.Client(lineConfig);
 
 app.get("/", (req, res) => {
   res.json(`Serer is running on PORT : ${PORT}.`);
