@@ -18,16 +18,8 @@ app.get("/", (req, res) => {
   res.json(`Serer is running on PORT : ${PORT}.`);
 });
 
-app.post("/webhook", line.middleware(lineConfig), async (req, res) => {
-  try {
-    const events = req.body.events;
-    console.log("events ====>", events);
-    return events.length > 0
-      ? events.map((item) => handleEvent(item))
-      : res.status(200).send("OK");
-  } catch (err) {
-    res.status(500).end();
-  }
+app.post("/webhook", line.middleware(lineConfig), (req, res) => {
+  res.sendStatus(200);
 });
 // event handler
 const handleEvent = async (event) => {
