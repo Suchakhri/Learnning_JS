@@ -13,9 +13,9 @@ const lineConfig = {
 
 // create LINE SDK client
 const client = new line.Client(lineConfig);
-// app.get("/", (req, res) => {
-//   res.json(`Serer is running on PORT : ${port}.`);
-// });
+app.get("/", (req, res) => {
+  res.json(`Serer is running on PORT : ${port}.`);
+});
 // verify
 app.post("/webhook", line.middleware(lineConfig), (req, res) => {
   try {
@@ -37,7 +37,7 @@ const handleEvent = async (event) => {
     console.log(event);
     return client.replyMessage(event.replyToken, {
       type: "text",
-      text: event.message.text,
+      text: `${event}`,
     });
   }
 };
