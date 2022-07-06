@@ -17,6 +17,6 @@ app.get("/", (req, res) => {
 });
 // verify
 app.post("/webhook", line.middleware(lineConfig), (req, res) => {
-  res.sendStatus(200);
+  res.status(200).send("OK");
 });
 app.listen(port);
