@@ -38,7 +38,7 @@ const handleEvent = async (event) => {
   }
   return client.replyMessage(event.replyToken, {
     type: "text",
-    text: `${event}`,
+    text: `test`,
   });
 };
 app.listen(port);
