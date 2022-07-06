@@ -33,7 +33,7 @@ const handleEvent = async (event) => {
   console.log(event);
   return client.replyMessage(event.replyToken, {
     type: "text",
-    text: `${event}`,
+    text: `${event.message.text}`,
   });
 };
 app.listen(port);
