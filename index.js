@@ -17,6 +17,12 @@ app.get("/", (req, res) => {
 });
 // verify
 app.post("/webhook", line.middleware(lineConfig), (req, res) => {
-  res.status(200).send("OK");
+  try {
+    const events = req.body.events;
+    console.log("events ====>", events);
+    return res.status(200).send("OK");
+  } catch (err) {
+    res.status(500).end();
+  }
 });
 app.listen(port);
