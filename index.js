@@ -35,10 +35,10 @@ const handleEvent = async (event) => {
     return null;
   } else if (event.type === "message") {
     console.log(event);
-    return client.replyMessage(event.replyToken, {
-      type: "text",
-      text: `${event}`,
-    });
   }
+  return client.replyMessage(event.replyToken, {
+    type: "text",
+    text: `${event}`,
+  });
 };
 app.listen(port);
