@@ -1,0 +1,27 @@
+{
+  "name": "learnning_js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon inde.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Suchakhri/Learnning_JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Suchakhri/Learnning_JS/issues"
+  },
+  "homepage": "https://github.com/Suchakhri/Learnning_JS#readme",
+  "dependencies": {
+    "@line/bot-sdk": "^7.5.0",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  },
+  "devDependencies": {},
+  "description": ""
+}
