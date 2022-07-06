@@ -30,6 +30,9 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
 
 // event handler
 const handleEvent = async (event) => {
-  return client.replyMessage(event.replyToken, { type: "text", text: "Test" });
+  return client.replyMessage(event.replyToken, {
+    type: "text",
+    text: "รักแฟนมากเลยค้าบ",
+  });
 };
 app.listen(port);
