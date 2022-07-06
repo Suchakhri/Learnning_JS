@@ -1,7 +1,6 @@
 const express = require("express");
 const axios = require("axios");
 const line = require("@line/bot-sdk");
-const e = require("express");
 const env = require("dotenv").config().parsed;
 const app = express();
 const port = process.env.PORT || 4000;
@@ -31,14 +30,10 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
 
 // event handler
 const handleEvent = async (event) => {
-  if (event.type !== "message" || event.message.type !== "") {
-    return null;
-  } else if (event.type === "message") {
-    console.log(event);
-  }
+  console.log(event);
   return client.replyMessage(event.replyToken, {
     type: "text",
-    text: `test`,
+    text: "Hello Vercel",
   });
 };
 app.listen(port);
