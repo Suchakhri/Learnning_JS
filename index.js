@@ -35,7 +35,7 @@ const handleEvent = async (event) => {
   } else if (event.type === "message") {
     return client.replyMessage(event.replyToken, {
       type: "text",
-      text: "คิดถึง",
+      text: "Test",
     });
   }
 };
