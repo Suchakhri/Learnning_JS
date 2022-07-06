@@ -15,7 +15,7 @@ const client = new line.Client(lineConfig);
 app.get("/", (req, res) => {
   res.json(`Serer is running on PORT : ${port}.`);
 });
-app.post("/webhook", (req, res) => {
+app.post("/webhook", line.middleware(lineConfig), (req, res) => {
   res.sendStatus(200);
 });
 app.listen(port);
