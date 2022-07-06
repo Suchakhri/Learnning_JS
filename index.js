@@ -30,7 +30,13 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
 
 // event handler
 const handleEvent = async (event) => {
-  console.log(event);
-  return client.replyMessage(event.replyToken, { type: "text", text: "Test" });
+  if (event.type !== "message" || event.message.type !== "") {
+    return false;
+  } else if (event.type === "message") {
+    return client.replyMessage(event.replyToken, {
+      type: "text",
+      text: "คิดถึง",
+    });
+  }
 };
 app.listen(port);
