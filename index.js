@@ -6,7 +6,7 @@ const env = require("dotenv").config().parsed;
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.use(express.json());
+// app.use(express.json());
 // MySQL Connection
 var db_conn = mysql.createConnection({
   host: env.db_host,
