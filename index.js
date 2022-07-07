@@ -74,7 +74,7 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
 const handleEvent = async (event) => {
   switch (event.message.text) {
     case "0":
-      var massage = [
+      var massage1 = [
         {
           type: "text",
           text: `Sever is running on PORT : https://learnning-js.vercel.app/${port}.`,
@@ -84,10 +84,10 @@ const handleEvent = async (event) => {
           text: "Success...",
         },
       ];
-      return client.replyMessage(event.replyToken, massage);
+      return client.replyMessage(event.replyToken, massage1);
       break;
     case "1":
-      var massage = [
+      var massage2 = [
         {
           type: "text",
           text: "Database is running on HOST : https://sgsv13.hostatom.com:8443/",
@@ -97,11 +97,11 @@ const handleEvent = async (event) => {
           text: "Success...",
         },
       ];
-      return client.replyMessage(event.replyToken, massage);
+      return client.replyMessage(event.replyToken, massage2);
       break;
     default:
-      var msg = `${event.message.text}`;
-      var massage = [
+      var msg_d = `${event.message.text}`;
+      var massage_d = [
         {
           type: "text",
           text: msg,
@@ -111,7 +111,7 @@ const handleEvent = async (event) => {
           text: "Reply your Message",
         },
       ];
-      return client.replyMessage(event.replyToken, massage);
+      return client.replyMessage(event.replyToken, massage_d);
   }
 };
 app.listen(port);
