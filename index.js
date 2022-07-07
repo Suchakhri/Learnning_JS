@@ -89,7 +89,7 @@ const handleEvent = async (event) => {
         },
         {
           type: "text",
-          text: `${resp}`,
+          text: `test`,
         },
       ]);
   }
