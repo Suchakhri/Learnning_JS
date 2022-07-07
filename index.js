@@ -47,6 +47,8 @@ const handleEvent = async (event) => {
       return client.replyMessage(event.replyToken, {
         type: "text",
         text: "ยังไงก็รักแฟนค้าบ",
+        type: "text",
+        text: "ยังไงก็รักแฟนค้าบ",
       });
   }
 };
