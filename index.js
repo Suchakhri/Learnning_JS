@@ -102,7 +102,10 @@ const handleEvent = async (event) => {
       return client.replyMessage(event.replyToken, massage);
       break;
     default:
-      return client.replyMessage(event.replyToken, event.message.text);
+      return client.replyMessage(event.replyToken, {
+        type: "text",
+        text: `รักแฟนเหมือนกันนะคร้าบ`,
+      });
   }
 };
 app.listen(port);
