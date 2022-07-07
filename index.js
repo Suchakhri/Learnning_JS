@@ -96,7 +96,13 @@ const handleEvent = async (event) => {
       return client.replyMessage(event.replyToken, massage);
       break;
     default:
-      var massage = "empty";
+      var msg = event.message.text;
+      var massage = [
+        {
+          type: "text",
+          text: msg,
+        },
+      ];
       return client.replyMessage(event.replyToken, massage);
   }
 };
