@@ -53,7 +53,7 @@ app.get("/select", async (req, res) => {
 
 app.get("/axios", async (req, res) => {
   let results = await axios.get("https://learnning-js.vercel.app/select");
-  console.log("data is ", results.data);
+  console.log(results.data[0]);
   return res.status(200).json("See log");
 });
 
@@ -93,7 +93,7 @@ const handleEvent = async (event) => {
         },
         {
           type: "text",
-          text: "ยังไงก็รักแฟนค้าบ",
+          text: "name: 'Peter', address: 'Lowstreet 4'",
         },
       ]);
   }
