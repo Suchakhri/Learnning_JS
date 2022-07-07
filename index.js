@@ -88,6 +88,7 @@ const handleEvent = async (event) => {
       });
       break;
     default:
+      let msg = `name: ${data[0].name}, address: ${data[0].address}`;
       return client.replyMessage(event.replyToken, [
         {
           type: "text",
@@ -95,7 +96,7 @@ const handleEvent = async (event) => {
         },
         {
           type: "text",
-          text: `name: ${data[0].name}, address: ${data[0].address}`,
+          text: msg,
         },
       ]);
   }
