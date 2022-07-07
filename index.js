@@ -33,24 +33,6 @@ app.get("/", (req, res) => {
   res.json(`Serer is running on PORT : ${PORT}.`);
 });
 
-// SELECT
-app.get("/select", async (req, res) => {
-  try {
-    db_conn.query(
-      "SELECT name, address FROM vercel_aws.customers;",
-      (err, results, fields) => {
-        if (err) {
-          console.log(err);
-          return res.status(400).send();
-        }
-        return res.status(200).json(results);
-      }
-    );
-  } catch (err) {
-    console.log(err);
-    return res.status(500).send();
-  }
-});
 // verify
 app.post("/webhook", line.middleware(lineConfig), (req, res) => {
   try {
@@ -80,6 +62,7 @@ const handleEvent = async (event) => {
       });
       break;
     default:
+      var res = await axios();
       return client.replyMessage(event.replyToken, [
         {
           type: "text",
@@ -87,11 +70,7 @@ const handleEvent = async (event) => {
         },
         {
           type: "text",
-          text: "Hello Axios",
-        },
-        {
-          type: "text",
-          text: "test",
+          text: "ยังไงก็รักแฟนค้าบ",
         },
       ]);
   }
