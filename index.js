@@ -4,7 +4,7 @@ const line = require("@line/bot-sdk");
 var mysql = require("mysql");
 const env = require("dotenv").config().parsed;
 const app = express();
-const port = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 // MySQL Connection
 var db_conn = mysql.createConnection({
@@ -16,9 +16,7 @@ var db_conn = mysql.createConnection({
 });
 db_conn.connect((err) => {
   if (err) throw err;
-  console.log(
-    "Database is running on HOST : Amazon Relational Database Service."
-  );
+  console.log("Database is running on HOST : Hostatom(Mysql).");
 });
 
 const lineConfig = {
@@ -29,14 +27,14 @@ const lineConfig = {
 // create LINE SDK client
 const client = new line.Client(lineConfig);
 app.get("/", (req, res) => {
-  res.json(`Serer is running on PORT : ${port}.`);
+  res.json(`Serer is running on PORT : ${PORT}.`);
 });
 
 // SELECT
 app.get("/select", async (req, res) => {
   try {
     db_conn.query(
-      "SELECT name, address FROM vercel_aws.customers;",
+      "SELECT name, address FROM customers;",
       (err, results, fields) => {
         if (err) {
           console.log(err);
@@ -106,4 +104,7 @@ const handleEvent = async (event) => {
       return client.replyMessage(event.replyToken, massage);
   }
 };
-app.listen(port);
+app.listen(PORT, () => {
+  console.log(`Serer is running on PORT : ${PORT}.`);
+  console.log(`http://localhost:${PORT}`);
+});

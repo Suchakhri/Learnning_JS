@@ -1,5 +1,12 @@
-100 20*20*0
-100 20*20*0
-100 20*20*0
-100 20*20*0
-100 20*20*0
+db name line_bot_nodejs
+db user nodejs_line
+pwd q4y61Nh@0
+
+INSERT INTO vercel_aws.customers (name,address) VALUES
+	 ('John','Highway 71'),
+	 ('Peter','Lowstreet 4'),
+	 ('Amy','Apple st 652'),
+	 ('Hannah','Mountain 21'),
+	 ('Michael','Valley 345'),
+	 ('Sandy','Ocean blvd 2'),
+	 ('Betty','Green Grass 1');
