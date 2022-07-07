@@ -16,7 +16,9 @@ var db_conn = mysql.createConnection({
 });
 db_conn.connect((err) => {
   if (err) throw err;
-  console.log("Database is running on HOST : Hostatom(Mysql).");
+  console.log(
+    "Database is running on HOST : https://sgsv13.hostatom.com:8443/"
+  );
 });
 
 const lineConfig = {
@@ -70,8 +72,6 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
 
 // event handler
 const handleEvent = async (event) => {
-  let results = await axios.get("https://learnning-js.vercel.app/select");
-  let data = results.data;
   switch (event.message.text) {
     case "0":
       return client.replyMessage(event.replyToken, {
@@ -80,12 +80,8 @@ const handleEvent = async (event) => {
       });
       break;
     case "1":
-      var msg = `name: ${data[0].name}, address: ${data[0].address}`;
+      var msg = `Serer is running on PORT : ${port}.`;
       var massage = [
-        {
-          type: "text",
-          text: "This data from database ===> ",
-        },
         {
           type: "text",
           text: msg,
