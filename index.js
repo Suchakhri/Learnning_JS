@@ -92,7 +92,7 @@ const handleEvent = async (event) => {
       let massage = [
         {
           type: "text",
-          text: "ยังไงก็รักแฟนค้าบ",
+          text: "This data from database ===> ",
         },
         {
           type: "text",
