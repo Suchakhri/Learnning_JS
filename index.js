@@ -75,21 +75,15 @@ const handleEvent = async (event) => {
   let results = await axios.get("https://learnning-js.vercel.app/select");
   let data = results.data;
   switch (event.message.text) {
-    case "คิดถึง":
+    case "0":
       return client.replyMessage(event.replyToken, {
         type: "text",
-        text: `คิดถึงแฟนมากกกก`,
+        text: `รายการ 0 `,
       });
       break;
-    case "รักแฟน":
-      return client.replyMessage(event.replyToken, {
-        type: "text",
-        text: `รักแฟนเหมือนกันนะคร้าบ`,
-      });
-      break;
-    default:
-      let msg = `name: ${data[0].name}, address: ${data[0].address}`;
-      let massage = [
+    case "1":
+      var msg = `name: ${data[0].name}, address: ${data[0].address}`;
+      var massage = [
         {
           type: "text",
           text: "This data from database ===> ",
@@ -99,6 +93,10 @@ const handleEvent = async (event) => {
           text: msg,
         },
       ];
+      return client.replyMessage(event.replyToken, massage);
+      break;
+    default:
+      var massage = "empty";
       return client.replyMessage(event.replyToken, massage);
   }
 };
