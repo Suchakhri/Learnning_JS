@@ -74,11 +74,17 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
 const handleEvent = async (event) => {
   switch (event.message.text) {
     case "0":
-      var msg = `Sever is running on PORT : https://learnning-js.vercel.app/${port}.`;
-      return client.replyMessage(event.replyToken, {
-        type: "text",
-        text: msg,
-      });
+      var massage = [
+        {
+          type: "text",
+          text: `Sever is running on PORT : https://learnning-js.vercel.app/${port}.`,
+        },
+        {
+          type: "text",
+          text: "Success...",
+        },
+      ];
+      return client.replyMessage(event.replyToken, massage);
       break;
     case "1":
       var massage = [
@@ -102,7 +108,7 @@ const handleEvent = async (event) => {
         },
         {
           type: "text",
-          text: "reply your text",
+          text: "Reply your Message",
         },
       ];
       return client.replyMessage(event.replyToken, massage);
