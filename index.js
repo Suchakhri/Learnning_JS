@@ -52,9 +52,9 @@ app.get("/select", async (req, res) => {
 });
 
 app.get("/axios", async (req, res) => {
-  let results = "Hello axios";
-  let test = await axios.get();
-  return res.status(200).json(results);
+  let results = await axios.get("https://learnning-js.vercel.app/select");
+  console.log("data is ", results.data);
+  return res.status(200).json("See log");
 });
 
 // verify
