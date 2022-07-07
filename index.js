@@ -96,11 +96,11 @@ const handleEvent = async (event) => {
       return client.replyMessage(event.replyToken, massage);
       break;
     default:
-      console.log(event.message);
+      var msg = `${event.message.text}`;
       var massage = [
         {
           type: "text",
-          text: "other",
+          text: msg,
         },
       ];
       return client.replyMessage(event.replyToken, massage);
