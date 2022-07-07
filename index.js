@@ -72,6 +72,8 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
 
 // event handler
 const handleEvent = async (event) => {
+  let results = await axios.get("https://learnning-js.vercel.app/select");
+  let data = results.data;
   switch (event.message.text) {
     case "คิดถึง":
       return client.replyMessage(event.replyToken, {
@@ -93,7 +95,7 @@ const handleEvent = async (event) => {
         },
         {
           type: "text",
-          text: "name: 'Peter', address: 'Lowstreet 4'",
+          text: `name: 'Peter', address: 'Lowstreet 4'`,
         },
       ]);
   }
