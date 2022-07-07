@@ -87,7 +87,7 @@ const handleEvent = async (event) => {
         text: `รักแฟนเหมือนกันนะคร้าบ`,
       });
       break;
-    default:
+    case "0":
       let msg = `name: ${data[0].name}, address: ${data[0].address}`;
       let massage = [
         {
@@ -100,6 +100,9 @@ const handleEvent = async (event) => {
         },
       ];
       return client.replyMessage(event.replyToken, massage);
+      break;
+    default:
+      return client.replyMessage(event.replyToken, event.message.text);
   }
 };
 app.listen(port);
