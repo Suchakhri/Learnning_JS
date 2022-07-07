@@ -1,9 +1,26 @@
 const express = require("express");
 const axios = require("axios");
 const line = require("@line/bot-sdk");
+var mysql = require("mysql");
 const env = require("dotenv").config().parsed;
 const app = express();
-const port = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
+
+app.use(express.json());
+// MySQL Connection
+var db_conn = mysql.createConnection({
+  host: env.db_host,
+  user: env.db_user,
+  password: env.db_password,
+  port: env.db_port,
+  database: env.db_database,
+});
+db_conn.connect((err) => {
+  if (err) throw err;
+  console.log(
+    "Database is running on HOST : Amazon Relational Database Service."
+  );
+});
 
 const lineConfig = {
   channelAccessToken: env.CHANNEL_ACCESS_TOKEN,
@@ -13,7 +30,26 @@ const lineConfig = {
 // create LINE SDK client
 const client = new line.Client(lineConfig);
 app.get("/", (req, res) => {
-  res.json(`Serer is running on PORT : ${port}.`);
+  res.json(`Serer is running on PORT : ${PORT}.`);
+});
+
+// SELECT
+app.get("/select", async (req, res) => {
+  try {
+    db_conn.query(
+      "SELECT name, address FROM vercel_aws.customers;",
+      (err, results, fields) => {
+        if (err) {
+          console.log(err);
+          return res.status(400).send();
+        }
+        return res.status(200).json(results);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send();
+  }
 });
 // verify
 app.post("/webhook", line.middleware(lineConfig), (req, res) => {
@@ -44,6 +80,8 @@ const handleEvent = async (event) => {
       });
       break;
     default:
+      var resp = await axios.get("https://learnning-js.vercel.app/select");
+      let data = resp.data;
       return client.replyMessage(event.replyToken, [
         {
           type: "text",
@@ -51,9 +89,12 @@ const handleEvent = async (event) => {
         },
         {
           type: "text",
-          text: "ยังไงก็รักแฟนค้าบ",
+          text: data,
         },
       ]);
   }
 };
-app.listen(port);
+app.listen(PORT, () => {
+  console.log(`Serer is running on PORT : ${PORT}.`);
+  console.log(`http://localhost:${PORT}`);
+});
