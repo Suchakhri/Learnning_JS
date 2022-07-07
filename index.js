@@ -4,7 +4,7 @@ const line = require("@line/bot-sdk");
 var mysql = require("mysql");
 const env = require("dotenv").config().parsed;
 const app = express();
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
 // MySQL Connection
 var db_conn = mysql.createConnection({
@@ -27,7 +27,7 @@ const lineConfig = {
 // create LINE SDK client
 const client = new line.Client(lineConfig);
 app.get("/", (req, res) => {
-  res.json(`Serer is running on PORT : ${PORT}.`);
+  res.json(`Serer is running on PORT : ${port}.`);
 });
 
 // SELECT
@@ -104,7 +104,4 @@ const handleEvent = async (event) => {
       return client.replyMessage(event.replyToken, massage);
   }
 };
-app.listen(PORT, () => {
-  console.log(`Serer is running on PORT : ${PORT}.`);
-  console.log(`http://localhost:${PORT}`);
-});
+app.listen(port);
