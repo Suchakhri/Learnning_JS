@@ -80,12 +80,14 @@ const handleEvent = async (event) => {
       });
       break;
     default:
-      var resp = await axios.get("https://learnning-js.vercel.app/select");
-      let data = resp.data;
       return client.replyMessage(event.replyToken, [
         {
           type: "text",
           text: "ยังไงก็รักแฟนค้าบ",
+        },
+        {
+          type: "text",
+          text: `Hello Axios`,
         },
         {
           type: "text",
