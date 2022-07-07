@@ -4,7 +4,7 @@ const line = require("@line/bot-sdk");
 var mysql = require("mysql");
 const env = require("dotenv").config().parsed;
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 8443;
 
 // MySQL Connection
 var db_conn = mysql.createConnection({
@@ -74,17 +74,21 @@ app.post("/webhook", line.middleware(lineConfig), (req, res) => {
 const handleEvent = async (event) => {
   switch (event.message.text) {
     case "0":
+      var msg = `Sever is running on PORT : https://learnning-js.vercel.app/${port}.`;
       return client.replyMessage(event.replyToken, {
         type: "text",
-        text: `รายการ 0 `,
+        text: msg,
       });
       break;
     case "1":
-      var msg = `Serer is running on PORT : ${port}.`;
       var massage = [
         {
           type: "text",
-          text: msg,
+          text: "Database is running on HOST : https://sgsv13.hostatom.com:8443/",
+        },
+        {
+          type: "text",
+          text: "Success...",
         },
       ];
       return client.replyMessage(event.replyToken, massage);
@@ -95,6 +99,10 @@ const handleEvent = async (event) => {
         {
           type: "text",
           text: msg,
+        },
+        {
+          type: "text",
+          text: "reply your text",
         },
       ];
       return client.replyMessage(event.replyToken, massage);
