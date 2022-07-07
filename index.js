@@ -104,7 +104,7 @@ const handleEvent = async (event) => {
       var massage_d = [
         {
           type: "text",
-          text: msg,
+          text: msg_d,
         },
         {
           type: "text",
