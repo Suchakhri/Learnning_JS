@@ -6,7 +6,6 @@ const env = require("dotenv").config().parsed;
 const app = express();
 const port = process.env.PORT || 4000;
 
-// app.use(express.json());
 // MySQL Connection
 var db_conn = mysql.createConnection({
   host: env.db_host,
@@ -32,6 +31,32 @@ const client = new line.Client(lineConfig);
 app.get("/", (req, res) => {
   res.json(`Serer is running on PORT : ${port}.`);
 });
+
+// SELECT
+app.get("/select", async (req, res) => {
+  try {
+    db_conn.query(
+      "SELECT name, address FROM vercel_aws.customers;",
+      (err, results, fields) => {
+        if (err) {
+          console.log(err);
+          return res.status(400).send();
+        }
+        return res.status(200).json(results);
+      }
+    );
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send();
+  }
+});
+
+app.get("/axios", async (req, res) => {
+  let results = "Hello axios";
+  let test = await axios.get();
+  return res.status(200).json(results);
+});
+
 // verify
 app.post("/webhook", line.middleware(lineConfig), (req, res) => {
   try {
