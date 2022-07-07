@@ -95,7 +95,7 @@ const handleEvent = async (event) => {
         },
         {
           type: "text",
-          text: `name: 'Peter', address: 'Lowstreet 4'`,
+          text: `name: ${data[0].name}, address: ${data[0].address}`,
         },
       ]);
   }
